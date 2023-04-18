@@ -5,12 +5,13 @@
 
 namespace NComm
 {
-  class CUdpChannel : public CComm
+  class CUdpChannel1 : public CComm
   {
-    CUdpChannel();
-    ~CUdpChannel() {};
+  public:
+    CUdpChannel1() {};
+    ~CUdpChannel1() {};
    
-    virtual CComm* createCommChannel(const void* channelProp);
+    virtual CComm* initCommChannel(const void* channelProp);
     virtual bool send(uint8_t* data, uint8_t size);
     virtual bool receive(uint8_t* data, uint8_t size);
   };

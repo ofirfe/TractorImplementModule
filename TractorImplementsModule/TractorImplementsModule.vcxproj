@@ -152,11 +152,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CComm.h" />
-    <ClInclude Include="CUdpChannel.h" />
+    <ClInclude Include="CFactory.h" />
+    <ClInclude Include="CSerialChannel1.h" />
+    <ClInclude Include="CTcpChannel1.h" />
+    <ClInclude Include="CUdpChannel1.h" />
+    <ClInclude Include="GeneralDefs.h" />
+    <ClInclude Include="Header.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CComm.cpp" />
+    <ClCompile Include="CFactory.cpp" />
+    <ClCompile Include="CSerialChannel1.cpp" />
+    <ClCompile Include="CTcpChannel1.cpp" />
+    <ClCompile Include="CUdpChannel1.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
