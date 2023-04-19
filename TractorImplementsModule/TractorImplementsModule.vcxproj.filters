@@ -39,6 +39,24 @@
     <ClInclude Include="CTcpChannel1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPlatformInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CImplementModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CImplement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Planter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Plow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -60,6 +78,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CImplementModule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CImplement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Plow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Blade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Planter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

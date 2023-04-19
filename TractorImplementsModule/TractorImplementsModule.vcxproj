@@ -151,18 +151,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Blade.h" />
     <ClInclude Include="CComm.h" />
     <ClInclude Include="CFactory.h" />
+    <ClInclude Include="CImplement.h" />
+    <ClInclude Include="CImplementModule.h" />
+    <ClInclude Include="CPlatformInterface.h" />
     <ClInclude Include="CSerialChannel1.h" />
     <ClInclude Include="CTcpChannel1.h" />
     <ClInclude Include="CUdpChannel1.h" />
     <ClInclude Include="GeneralDefs.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Planter.h" />
+    <ClInclude Include="Plow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Blade.cpp" />
     <ClCompile Include="CComm.cpp" />
     <ClCompile Include="CFactory.cpp" />
+    <ClCompile Include="CImplement.cpp" />
+    <ClCompile Include="CImplementModule.cpp" />
     <ClCompile Include="CSerialChannel1.cpp" />
     <ClCompile Include="CTcpChannel1.cpp" />
     <ClCompile Include="CUdpChannel1.cpp" />
@@ -172,6 +181,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Planter.cpp" />
+    <ClCompile Include="Plow.cpp" />
     <ClCompile Include="TractorImplementsModule.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
