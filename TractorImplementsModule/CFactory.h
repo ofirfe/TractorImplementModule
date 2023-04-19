@@ -4,16 +4,27 @@
 #include "CUdpChannel1.h"
 #include "CTcpChannel1.h"
 #include "CSerialChannel1.h"
+#include "CBlade.h"
+#include "CPlanter.h"
+#include "CPlow.h"
+#include "CImplementModule.h"
 
 namespace NFactory
 {
   class CFactory
   {
   public:
-    CFactory() = default;
+    CFactory() {};
     ~CFactory() {};
 
-    NComm::CComm* const createCommChannel(NComm::EChannelType& channelType, void* channelProp);
+    static NComm::CComm* createCommChannel(const NComm::EChannelType& channelType, const void* channelProp);
+    static NImplement::CImplement* createImplement(const NImplement::EImplement& implement, 
+                                                  const NComm::EChannelType& channelType, 
+                                                  const void* channelProp);
+    static NImplement::CImplementModule* createImplementModule(const NImplement::EImplement& implement,
+                                                              const NComm::EChannelType& channelType, 
+                                                              const void* channelProp);
+ 
   };
 }
 

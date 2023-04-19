@@ -53,17 +53,15 @@ namespace NComm
   class CComm
   {
   public:
-    CComm() {};
-    ~CComm() {};
+    CComm() : m_channelType{SERIAL} {};
+    virtual ~CComm() {};
 
-    virtual CComm* initCommChannel(const void* channelProp) = 0;
     virtual bool send(uint8_t* data, uint8_t size) = 0;
     virtual bool receive(uint8_t* data, uint8_t size) = 0;
-    bool initChannel(const void* channelProp);
     const EChannelType& getChannelType() { return m_channelType; };
+    virtual CComm* initCommChannel(const void* channelProp) = 0;
 
-  private:
-
+  protected:
     EChannelType m_channelType;
   };
 }

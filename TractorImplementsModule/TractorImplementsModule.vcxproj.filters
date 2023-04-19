@@ -48,13 +48,13 @@
     <ClInclude Include="CImplement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blade.h">
+    <ClInclude Include="CPlow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Planter.h">
+    <ClInclude Include="CPlanter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plow.h">
+    <ClInclude Include="CBlade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,13 +86,16 @@
     <ClCompile Include="CImplement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plow.cpp">
+    <ClCompile Include="CPlatformInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Blade.cpp">
+    <ClCompile Include="CPlow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Planter.cpp">
+    <ClCompile Include="CPlanter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CBlade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
