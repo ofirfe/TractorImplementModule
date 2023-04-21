@@ -10,8 +10,7 @@ namespace NImplement
 {
   static const uint32_t MIN_FUEL_LEVEL = 10;  // Percentage
   static const uint32_t MAX_FUEL_LEVEL = 100; // Percentage
-  using namespace std::chrono_literals;
-  static const std::chrono::duration<uint32_t, std::milli> IMPLEMENT_RATE = 16ms;
+  static const uint32_t IMPLEMENT_RATE = 1; //Seconds
 
   enum EImplement
   {
@@ -69,6 +68,7 @@ namespace NImplement
     };
     bool sendCmd();
     bool receiveRpt();
+    void simFuelUsage();
 
   protected:
     SCmdMsg* m_cmdMsg;

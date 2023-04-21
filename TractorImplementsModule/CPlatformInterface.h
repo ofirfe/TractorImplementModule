@@ -2,16 +2,15 @@
 #define CPLATFORMINTERFACE_H
 
 #include <stdint.h>
-#include <thread>
-#include <chrono>
+//#include <thread>
+//#include <chrono>
 
-#include "CComm.h"
+//#include "CComm.h"
 #include "CImplementModule.h"
 
 namespace NPlatform
 {
-  using namespace std::chrono_literals;
-  static const std::chrono::duration<uint32_t, std::milli> PLATFORM_MODULE1_RATE  = 16ms;
+  static const uint32_t IMPLEMENT_MODULE_RATE = 1;
 
   enum EPlatformState
   {

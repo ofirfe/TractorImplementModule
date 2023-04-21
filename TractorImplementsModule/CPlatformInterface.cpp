@@ -29,9 +29,13 @@ void CPlatformInterface::runPlatform()
 
     case OPER:
     {
+      // Simualate fuel usage
+      std::thread tImplement([this] {m_implementModule1->getSimFuelFunc(); });
+
       // Add additional threads according to number of modules and functions for thos modules
       std::thread tModuleImplement1([this] {this->runImplementModule1(); });
 
+      tImplement.join();
       tModuleImplement1.join();
       m_platformState = COMPLETE;
       break;
@@ -92,14 +96,18 @@ void CPlatformInterface::runImplementModule1()
     m_prevImplementCommands1 = *currentCommads1;
 
     //Send cycle
+    //Send commands to Implement
+    m_implementModule1->sendCommand();
+
     m_implementReport1.fuelLevel = m_implementModule1->getFuelLevel();
     m_implementReport1.isOn = isOn;
 
+    // Send report to operator
     sendPlatformReport1(m_implementReport1);
 
     if (!endThread)
     {
-      std::this_thread::sleep_for(PLATFORM_MODULE1_RATE);
+      std::this_thread::sleep_for(std::chrono::seconds(IMPLEMENT_MODULE_RATE));
     }
   }
 }

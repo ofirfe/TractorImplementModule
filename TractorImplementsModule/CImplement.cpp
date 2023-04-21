@@ -2,6 +2,7 @@
 #include "CUdpChannel1.h"
 #include "CTcpChannel1.h"
 #include "CSerialChannel1.h"
+#include <mutex>
 
 using namespace NImplement;
 
@@ -41,18 +42,26 @@ m_commChannel{ nullptr }
   default:
     break;
   }
-
-  std::thread tImplement([this]
-    {
-      m_rptMsg->fuelLevel = MAX_FUEL_LEVEL;
-      while (m_rptMsg->fuelLevel > 0)
-      {
-        --m_rptMsg->fuelLevel;
-        std::this_thread::sleep_for(IMPLEMENT_RATE);
-      }
-    });
-  tImplement.join();
 }
+
+void CImplement::simFuelUsage()
+{
+  std::mutex l;
+
+  l.lock();
+  m_rptMsg->fuelLevel = MAX_FUEL_LEVEL;
+  l.unlock();
+
+  while (m_rptMsg->fuelLevel > 0)
+  {
+    l.lock();
+    --m_rptMsg->fuelLevel;
+    l.unlock();
+
+    std::this_thread::sleep_for(std::chrono::seconds(IMPLEMENT_RATE));
+  }
+}
+
 bool CImplement::sendCmd()
 {
   bool rv{ false };
@@ -75,7 +84,8 @@ bool CImplement::receiveRpt()
 
   if (m_commChannel->receive(pData, receievedLength))
   {
-    m_rptMsg = reinterpret_cast<SRptMsg*>(pData);
+    //Markered out because receiev is an API
+    //m_rptMsg = reinterpret_cast<SRptMsg*>(pData);
     rv = true;
   }
 
