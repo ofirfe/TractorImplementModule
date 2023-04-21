@@ -64,6 +64,10 @@ namespace NImplement
     void deactivateImplement() { m_cmdMsg->turnOff = true; };
     bool checkFuelLevelLow() { (m_rptMsg->fuelLevel < MIN_FUEL_LEVEL) ? true : false; }
     bool checkImplementOn() { return m_rptMsg->isOn; };
+    uint32_t getFuelLevel() { return m_rptMsg->fuelLevel; };
+    bool isChannelOpen() {
+      return m_commChannel->isChannelOpen();
+    };
     bool sendCmd();
     bool receiveRpt();
 

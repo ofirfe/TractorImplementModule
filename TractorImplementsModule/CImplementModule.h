@@ -21,9 +21,11 @@ namespace NImplement
     };
 
     void turnImplementOn() { m_implement->activateImplement(); };
-    void trunImplementOff() { m_implement->deactivateImplement(); };
+    void turnImplementOff() { m_implement->deactivateImplement(); };
     bool checkFuelLevelLow() { return m_implement->checkFuelLevelLow(); };
     bool checkImplementOn() { return m_implement->checkImplementOn(); };
+    bool isChannelOpen() { return m_implement->isChannelOpen(); };
+    uint32_t getFuelLevel() { return m_implement->getFuelLevel(); };
 
   private:
     CImplement* m_implement;

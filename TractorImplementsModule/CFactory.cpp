@@ -12,7 +12,7 @@ NComm::CComm* CFactory::createCommChannel(const NComm::EChannelType& channelType
   {
     const NComm::SSerialChannelProp* pSerialChannelProp = reinterpret_cast<const NComm::SSerialChannelProp*>(channelProp);
     NComm::CSerialChannel1 pSerialChannel1;
-    pCommChannel = pSerialChannel1.initCommChannel(pSerialChannelProp);
+    pCommChannel = pSerialChannel1.openCommChannel(pSerialChannelProp);
     break;
   }
 
@@ -20,7 +20,7 @@ NComm::CComm* CFactory::createCommChannel(const NComm::EChannelType& channelType
   {
     const NComm::SEthChannelProp* pEthChannelProp = reinterpret_cast<const NComm::SEthChannelProp*>(channelProp);
     NComm::CUdpChannel1 pUdpChannel;
-    pCommChannel = pUdpChannel.initCommChannel(pEthChannelProp);
+    pCommChannel = pUdpChannel.openCommChannel(pEthChannelProp);
     break;
   }
 
@@ -28,7 +28,7 @@ NComm::CComm* CFactory::createCommChannel(const NComm::EChannelType& channelType
   {
     const NComm::SEthChannelProp* pEthChannelProp = reinterpret_cast<const NComm::SEthChannelProp*>(channelProp);
     NComm::CTcpChannel1 pTcpChannel;
-    pCommChannel = pTcpChannel.initCommChannel(pEthChannelProp);
+    pCommChannel = pTcpChannel.openCommChannel(pEthChannelProp);
     break;
   }
 

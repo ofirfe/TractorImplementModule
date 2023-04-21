@@ -15,16 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CUdpChannel1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CComm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneralDefs.h">
@@ -59,13 +53,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TractorImplementsModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CComm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CUdpChannel1.cpp">
@@ -80,22 +68,10 @@
     <ClCompile Include="CFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CImplementModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CImplement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CPlatformInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlanter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CBlade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

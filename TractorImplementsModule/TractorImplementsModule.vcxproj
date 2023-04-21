@@ -84,7 +84,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -161,29 +161,16 @@
     <ClInclude Include="CTcpChannel1.h" />
     <ClInclude Include="CUdpChannel1.h" />
     <ClInclude Include="GeneralDefs.h" />
-    <ClInclude Include="Header.h" />
-    <ClInclude Include="pch.h" />
     <ClInclude Include="CPlanter.h" />
     <ClInclude Include="CPlow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CBlade.cpp" />
-    <ClCompile Include="CComm.cpp" />
     <ClCompile Include="CFactory.cpp" />
     <ClCompile Include="CImplement.cpp" />
-    <ClCompile Include="CImplementModule.cpp" />
     <ClCompile Include="CPlatformInterface.cpp" />
     <ClCompile Include="CSerialChannel1.cpp" />
     <ClCompile Include="CTcpChannel1.cpp" />
     <ClCompile Include="CUdpChannel1.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="CPlanter.cpp" />
-    <ClCompile Include="CPlow.cpp" />
     <ClCompile Include="TractorImplementsModule.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

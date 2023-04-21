@@ -2,12 +2,15 @@
 
 using namespace NComm;
 
-CComm* CUdpChannel1::initCommChannel(const void* channelProp)
+CComm* CUdpChannel1::openCommChannel(const void* channelProp)
 {
   const NComm::SEthChannelProp* ethProp = reinterpret_cast<const NComm::SEthChannelProp*>(channelProp);
-  // Set UDP comm channel according to channelProp
+  // Setup UDP comm channel according to channelProp
 
+  // If openening channel was successful return pointer and update m_isOpenChannel
+  // otherwise return nullptr
   CComm* pChannel = new CUdpChannel1;
+  m_isChannelOpen = true;
   return pChannel;
 }
 
