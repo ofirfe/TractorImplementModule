@@ -16,7 +16,8 @@ namespace NPlatform
   enum EPlatformState
   {
     INIT,
-    OPER
+    OPER,
+    COMPLETE
   };
 
   struct SImplementCommand
@@ -60,7 +61,7 @@ namespace NPlatform
      // from configuration file.
      // The function returns a pointer to the channel properties.
      // The properties need to be red according to their type.
-     uint8_t* readPropFromConfig(NImplement::EImplement& implement) { return nullptr; };
+     uint8_t* readPropFromConfig(NImplement::EImplement& implement) { return new uint8_t; };
 
      const SImplementCommand* getPlatformCommands1();
      void sendPlatformReport1(const SImplementReport& implementReport) { /* Send report implementReport */ };

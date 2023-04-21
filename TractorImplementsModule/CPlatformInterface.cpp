@@ -9,8 +9,10 @@ using namespace NPlatform;
 //***********************************************************************
 void CPlatformInterface::runPlatform()
 {
-  switch (m_platformState)
+  while (m_platformState != COMPLETE)
   {
+    switch (m_platformState)
+    {
     case INIT:
     {
       // Channel type is initiated here but will be properly selected
@@ -20,22 +22,24 @@ void CPlatformInterface::runPlatform()
       uint8_t* channelProp = readPropFromConfig(implement);
 
       // Option of adding additional modules as needed
-      m_implementModule1 = new NImplement::CImplementModule(implement, channelType, channelProp); 
+      m_implementModule1 = new NImplement::CImplementModule(implement, channelType, channelProp);
       m_platformState = OPER;
       break;
     }
-      
+
     case OPER:
     {
       // Add additional threads according to number of modules and functions for thos modules
       std::thread tModuleImplement1([this] {this->runImplementModule1(); });
 
       tModuleImplement1.join();
+      m_platformState = COMPLETE;
       break;
     }
-    
+
     default:
       break;
+    }
   }
 }
 
@@ -50,6 +54,8 @@ void CPlatformInterface::runImplementModule1()
   while ((m_implementModule1->isChannelOpen()) && (!endThread))
   {
     // Receive cycle
+    m_implementModule1->receiveRpt();
+
     auto lowFuelLevel = m_implementModule1->checkFuelLevelLow();
     auto isOn = m_implementModule1->checkImplementOn();
     auto currentCommads1 = getPlatformCommands1();

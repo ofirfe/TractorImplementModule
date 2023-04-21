@@ -9,7 +9,8 @@ namespace NImplement
   {
   public:
     CBlade() {};
-    CBlade(const NComm::EChannelType& channelType, const void* channelProp) {};
+    CBlade(const NComm::EChannelType& channelType, const void* channelProp) :
+            CImplement(channelType, channelProp) {};
     ~CBlade() = default;
 
     // May add additional functionality for the

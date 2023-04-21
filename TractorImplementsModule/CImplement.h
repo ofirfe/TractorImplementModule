@@ -2,11 +2,16 @@
 #define CIMPLEMENT_H
 
 #include <stdint.h>
+#include <thread>
+#include <chrono>
 #include "CComm.h"
 
 namespace NImplement
 {
-  static const uint32_t MIN_FUEL_LEVEL = 10;
+  static const uint32_t MIN_FUEL_LEVEL = 10;  // Percentage
+  static const uint32_t MAX_FUEL_LEVEL = 100; // Percentage
+  using namespace std::chrono_literals;
+  static const std::chrono::duration<uint32_t, std::milli> IMPLEMENT_RATE = 16ms;
 
   enum EImplement
   {
@@ -50,7 +55,7 @@ namespace NImplement
   class CImplement
   {
   public:
-    CImplement() {};
+    CImplement() : m_cmdMsg{ new SCmdMsg }, m_rptMsg{ new SRptMsg }, m_commChannel{nullptr} {};
     CImplement(const NComm::EChannelType& channelType, const void* channelProp);
     virtual ~CImplement() { delete m_commChannel; };
 

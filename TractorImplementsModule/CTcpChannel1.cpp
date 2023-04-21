@@ -2,16 +2,12 @@
 
 using namespace NComm;
 
-CComm* CTcpChannel1::openCommChannel(const void* channelProp)
+void CTcpChannel1::openCommChannel(const void* channelProp)
 {
   const NComm::SEthChannelProp* ethProp = reinterpret_cast<const NComm::SEthChannelProp*>(channelProp);
   // Set TCP/IP comm channel according to channelProp
 
-  // If openening channel was successful return pointer and update m_isOpenChannel
-  // otherwise return nullptr
-  CComm* pChannel = new CTcpChannel1;
   m_isChannelOpen = true;
-  return pChannel;
 }
 
 bool CTcpChannel1::send(uint8_t* data, uint8_t size)

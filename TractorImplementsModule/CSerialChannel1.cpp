@@ -2,16 +2,13 @@
 
 using namespace NComm;
 
-CComm* CSerialChannel1::openCommChannel(const void* channelProp)
+void CSerialChannel1::openCommChannel(const void* channelProp)
 {
   const NComm::SSerialChannelProp* serialProp = reinterpret_cast<const NComm::SSerialChannelProp*>(channelProp);
   // Set SERIAL comm channel according to channelProp
 
-  // If openening channel was successful return pointer and update m_isOpenChannel
-  // otherwise return nullptr
-  CComm* pChannel = new CSerialChannel1;
   m_isChannelOpen = true;
-  return pChannel;
+
 }
 
 bool CSerialChannel1::send(uint8_t* data, uint8_t size)

@@ -61,7 +61,7 @@ namespace NComm
     virtual bool send(uint8_t* data, uint8_t size) = 0;
     virtual bool receive(uint8_t* data, uint8_t size) = 0;
     const EChannelType& getChannelType() { return m_channelType; };
-    virtual CComm* openCommChannel(const void* channelProp) = 0;
+    virtual void openCommChannel(const void* channelProp) = 0;
     bool isChannelOpen() { return m_isChannelOpen; };
 
   protected:
