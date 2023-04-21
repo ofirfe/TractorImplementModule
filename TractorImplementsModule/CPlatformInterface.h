@@ -10,8 +10,8 @@
 
 namespace NPlatform
 {
-  using std::chrono::operator""ms;
-  static const std::chrono::milliseconds PLATFORM_MODULE1_RATE = 16ms;
+  using namespace std::chrono_literals;
+  static const std::chrono::duration<uint32_t, std::milli> PLATFORM_MODULE1_RATE  = 16ms;
 
   enum EPlatformState
   {
@@ -49,36 +49,32 @@ namespace NPlatform
     {};
     ~CPlatformInterface() { delete m_implementModule1; };
 
-    static void runPlatform();
+    void runPlatform();
+    void runImplementModule1();
 
    private:
      // Function that identifies the Implement connected 
-     NImplement::EImplement identifyImplement(NComm::EChannelType& channelType) { };
+     NImplement::EImplement identifyImplement(NComm::EChannelType& channelType) { return NImplement::BLADE; };
 
      // Function that reads channel properties according to type (identified above)
      // from configuration file.
      // The function returns a pointer to the channel properties.
      // The properties need to be red according to their type.
-     uint8_t* readPropFromConfig(NImplement::EImplement& implement) {};
+     uint8_t* readPropFromConfig(NImplement::EImplement& implement) { return nullptr; };
 
-     const SImplementCommand& getPlatformCommands1();
+     const SImplementCommand* getPlatformCommands1();
      void sendPlatformReport1(const SImplementReport& implementReport) { /* Send report implementReport */ };
-     void runImplementModule1();
-     auto now() { return std::chrono::steady_clock::now(); }
-     auto awake_time() {
-       using std::chrono::operator""ms;
-       return now() + PLATFORM_MODULE1_RATE;
-      }
-      EPlatformState m_platformState;
-    
-      // Option of adding additional modules as needed
-      NImplement::CImplementModule* m_implementModule1;
+     
+     EPlatformState m_platformState;
 
-      // Option of adding commands for additional modules
-      SImplementCommand m_prevImplementCommands1;
+     // Option of adding additional modules as needed
+     NImplement::CImplementModule* m_implementModule1;
 
-      // Option of adding reports for additional modules
-      SImplementReport m_implementReport1;
+     // Option of adding commands for additional modules
+     SImplementCommand m_prevImplementCommands1;
+
+     // Option of adding reports for additional modules
+     SImplementReport m_implementReport1;
   };
 }
 

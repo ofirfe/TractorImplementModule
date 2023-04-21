@@ -1,17 +1,7 @@
 #include "CPlatformInterface.h"
 
-
 using namespace NPlatform;
 
-//***********************************************************************
-//* Function name : CPlatformInterface                                  *
-//* Purpose       : Constructor                                         *
-//***********************************************************************
-CPlatformInterface::CPlatformInterface() : m_platformState{ INIT },
-m_implementModule1{nullptr}
-{
-
-}
 
 //***********************************************************************
 //* Function name : runPlatform                                         *
@@ -30,7 +20,7 @@ void CPlatformInterface::runPlatform()
       uint8_t* channelProp = readPropFromConfig(implement);
 
       // Option of adding additional modules as needed
-      m_implementModule1 = NFactory::CFactory().createImplementModule(implement, channelType, channelProp); 
+      m_implementModule1 = new NImplement::CImplementModule(implement, channelType, channelProp); 
       m_platformState = OPER;
       break;
     }
@@ -38,7 +28,9 @@ void CPlatformInterface::runPlatform()
     case OPER:
     {
       // Add additional threads according to number of modules and functions for thos modules
-      std::thread tModuleImplement1(&CPlatformInterface::runImplementModule1);
+      std::thread tModuleImplement1([this] {this->runImplementModule1(); });
+
+      tModuleImplement1.join();
       break;
     }
     
@@ -70,26 +62,28 @@ void CPlatformInterface::runImplementModule1()
       endThread = true;
     }
 
-    if ((currentCommads1.turnOn != m_prevImplementCommands1.turnOn) &&
+    if ((currentCommads1->turnOn != m_prevImplementCommands1.turnOn) &&
       (!isOn))
     {
       // Turn implement on
-      if (currentCommads1.turnOn == 1)
+      if (currentCommads1->turnOn == 1)
       {
         m_implementModule1->turnImplementOn();
       }
     }
 
-    if ((currentCommads1.turnOff != m_prevImplementCommands1.turnOff) &&
+    if ((currentCommads1->turnOff != m_prevImplementCommands1.turnOff) &&
       (isOn))
     {
       // Turn implement off
-      if (currentCommads1.turnOff == 1)
+      if (currentCommads1->turnOff == 1)
       {
         m_implementModule1->turnImplementOff();
         endThread = true;
       }
     }
+
+    m_prevImplementCommands1 = *currentCommads1;
 
     //Send cycle
     m_implementReport1.fuelLevel = m_implementModule1->getFuelLevel();
@@ -99,7 +93,7 @@ void CPlatformInterface::runImplementModule1()
 
     if (!endThread)
     {
-      std::this_thread::sleep_until(awake_time());
+      std::this_thread::sleep_for(PLATFORM_MODULE1_RATE);
     }
   }
 }
@@ -108,9 +102,9 @@ void CPlatformInterface::runImplementModule1()
 //* Function name : getPlaformCommands1                                 *
 //* Purpose       : Get operation commands for Implement Module 1       *
 //***********************************************************************
-const SImplementCommand& CPlatformInterface::getPlatformCommands1()
+const SImplementCommand* CPlatformInterface::getPlatformCommands1()
 {
-  SImplementCommand newCommands;
+  SImplementCommand* newCommands = new SImplementCommand;
 
   // Read new commands for Implement1
 

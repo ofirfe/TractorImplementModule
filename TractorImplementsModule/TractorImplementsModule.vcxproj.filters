@@ -13,24 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Implements">
+      <UniqueIdentifier>{d9eff436-52c1-48b6-972c-bd8ebfef54e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Implements">
+      <UniqueIdentifier>{e29efaf2-3474-4235-927a-5fa80fd415bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Implements\Communication">
+      <UniqueIdentifier>{037be720-7f03-4b17-bfa3-674fc3793ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Implements\Communication">
+      <UniqueIdentifier>{44a67a1e-a2b2-4f9b-a0e3-4234cec72197}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CUdpChannel1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CComm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneralDefs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CSerialChannel1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CTcpChannel1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CPlatformInterface.h">
@@ -39,40 +36,52 @@
     <ClInclude Include="CImplementModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CImplement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlow.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CBlade.h">
+      <Filter>Header Files\Implements</Filter>
     </ClInclude>
     <ClInclude Include="CPlanter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Implements</Filter>
     </ClInclude>
-    <ClInclude Include="CBlade.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CPlow.h">
+      <Filter>Header Files\Implements</Filter>
+    </ClInclude>
+    <ClInclude Include="CImplement.h">
+      <Filter>Header Files\Implements</Filter>
+    </ClInclude>
+    <ClInclude Include="CComm.h">
+      <Filter>Header Files\Implements\Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="CSerialChannel1.h">
+      <Filter>Header Files\Implements\Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="CTcpChannel1.h">
+      <Filter>Header Files\Implements\Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="CUdpChannel1.h">
+      <Filter>Header Files\Implements\Communication</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TractorImplementsModule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CUdpChannel1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CSerialChannel1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CTcpChannel1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CImplement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CPlatformInterface.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CImplement.cpp">
+      <Filter>Source Files\Implements</Filter>
+    </ClCompile>
+    <ClCompile Include="CSerialChannel1.cpp">
+      <Filter>Source Files\Implements\Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="CTcpChannel1.cpp">
+      <Filter>Source Files\Implements\Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="CUdpChannel1.cpp">
+      <Filter>Source Files\Implements\Communication</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

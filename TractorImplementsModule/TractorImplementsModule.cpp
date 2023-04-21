@@ -5,7 +5,9 @@
 
 int main()
 {
-  NPlatform::CPlatformInterface().runPlatform();
+  NPlatform::CPlatformInterface platformInterface;
+
+  platformInterface.runPlatform();
 }
 
 

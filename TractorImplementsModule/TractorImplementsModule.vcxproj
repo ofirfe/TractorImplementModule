@@ -72,6 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <PublicIncludeDirectories>D:\MyFiles\BlueWhite Project\TractorImplementModule Repo\TractorImplementModule\TractorImplementsModule;$(PublicIncludeDirectories)</PublicIncludeDirectories>
+    <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -160,7 +162,6 @@
     <ClInclude Include="CSerialChannel1.h" />
     <ClInclude Include="CTcpChannel1.h" />
     <ClInclude Include="CUdpChannel1.h" />
-    <ClInclude Include="GeneralDefs.h" />
     <ClInclude Include="CPlanter.h" />
     <ClInclude Include="CPlow.h" />
   </ItemGroup>
