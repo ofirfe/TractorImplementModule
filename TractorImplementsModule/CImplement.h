@@ -56,7 +56,12 @@ namespace NImplement
   public:
     CImplement() : m_cmdMsg{ new SCmdMsg }, m_rptMsg{ new SRptMsg }, m_commChannel{nullptr} {};
     CImplement(const NComm::EChannelType& channelType, const void* channelProp);
-    virtual ~CImplement() { delete m_commChannel; };
+    virtual ~CImplement() 
+    { 
+      delete m_cmdMsg;
+      delete m_rptMsg;
+      delete m_commChannel; 
+    };
 
     void activateImplement() { m_cmdMsg->turnOn = true; m_rptMsg->isOn = true; };
     void deactivateImplement() { m_cmdMsg->turnOff = true; m_rptMsg->isOn = false; };
