@@ -44,7 +44,7 @@ m_commChannel{ nullptr }
   }
 }
 
-void CImplement::simFuelUsage()
+void CImplement::runImplement()
 {
   std::mutex l;
 
@@ -52,11 +52,42 @@ void CImplement::simFuelUsage()
   m_rptMsg->fuelLevel = MAX_FUEL_LEVEL;
   l.unlock();
 
-  while (m_rptMsg->fuelLevel > 0)
+  auto fFuel = [this, &l]() -> bool
   {
+    bool rv{ false };
+    l.lock();
+    ((m_rptMsg->fuelLevel > 0) && (m_rptMsg->isOn)) ? rv = true : rv = false;
+    l.unlock();
+    return rv;
+  };
+
+  auto fOn = [this, &l]() -> bool
+  {
+    bool rv{ false };
+    l.lock();
+    (m_rptMsg->isOn) ? rv = true : rv = false;
+    l.unlock();
+    return rv;
+  };
+
+  // Wait for power on
+  while (!fOn())
+  {
+    std::this_thread::sleep_for(std::chrono::seconds(IMPLEMENT_RATE));
+  }
+
+  while (fFuel())
+  {
+    //Receive cycle
+    receiveRpt();
+
+    // Logic cycle
     l.lock();
     --m_rptMsg->fuelLevel;
     l.unlock();
+
+    //Send Commnads
+    sendCmd();
 
     std::this_thread::sleep_for(std::chrono::seconds(IMPLEMENT_RATE));
   }

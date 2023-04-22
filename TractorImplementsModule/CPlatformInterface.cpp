@@ -1,4 +1,5 @@
 #include "CPlatformInterface.h"
+#include <iostream>
 
 using namespace NPlatform;
 
@@ -29,8 +30,8 @@ void CPlatformInterface::runPlatform()
 
     case OPER:
     {
-      // Simualate fuel usage
-      std::thread tImplement([this] {m_implementModule1->getSimFuelFunc(); });
+      // Implement operation and simualate fuel usage
+      std::thread tImplement([this] {m_implementModule1->runImplement(); });
 
       // Add additional threads according to number of modules and functions for thos modules
       std::thread tModuleImplement1([this] {this->runImplementModule1(); });
@@ -54,12 +55,11 @@ void CPlatformInterface::runPlatform()
 void CPlatformInterface::runImplementModule1()
 {
   bool endThread{ false };
+  std::this_thread::sleep_for(std::chrono::seconds(5));
 
   while ((m_implementModule1->isChannelOpen()) && (!endThread))
   {
     // Receive cycle
-    m_implementModule1->receiveRpt();
-
     auto lowFuelLevel = m_implementModule1->checkFuelLevelLow();
     auto isOn = m_implementModule1->checkImplementOn();
     auto currentCommads1 = getPlatformCommands1();
@@ -68,6 +68,7 @@ void CPlatformInterface::runImplementModule1()
     // If fuel level is low turn off implement
     if (lowFuelLevel)
     {
+      std::cout << "Fuel Low! - Implement auto shutdown procedure" << std::endl;
       m_implementModule1->turnImplementOff();
       endThread = true;
     }
@@ -78,6 +79,7 @@ void CPlatformInterface::runImplementModule1()
       // Turn implement on
       if (currentCommads1->turnOn == 1)
       {
+        std::cout << "Implement On" << std::endl;
         m_implementModule1->turnImplementOn();
       }
     }
@@ -88,6 +90,7 @@ void CPlatformInterface::runImplementModule1()
       // Turn implement off
       if (currentCommads1->turnOff == 1)
       {
+        std::cout << "Implement Off" << std::endl;
         m_implementModule1->turnImplementOff();
         endThread = true;
       }
@@ -97,17 +100,18 @@ void CPlatformInterface::runImplementModule1()
 
     //Send cycle
     //Send commands to Implement
-    m_implementModule1->sendCommand();
-
     m_implementReport1.fuelLevel = m_implementModule1->getFuelLevel();
     m_implementReport1.isOn = isOn;
 
     // Send report to operator
     sendPlatformReport1(m_implementReport1);
 
+    std::cout << "Fuel Level: " << m_implementReport1.fuelLevel <<
+      " Is implement on: " << ((m_implementReport1.isOn) ? "Yes" : "No") << std::endl;
+
     if (!endThread)
     {
-      std::this_thread::sleep_for(std::chrono::seconds(IMPLEMENT_MODULE_RATE));
+      std::this_thread::sleep_for(std::chrono::milliseconds(IMPLEMENT_MODULE_RATE));
     }
   }
 }

@@ -10,7 +10,7 @@
 
 namespace NPlatform
 {
-  static const uint32_t IMPLEMENT_MODULE_RATE = 1;
+  static const uint32_t IMPLEMENT_MODULE_RATE = 500; // mSec
 
   enum EPlatformState
   {

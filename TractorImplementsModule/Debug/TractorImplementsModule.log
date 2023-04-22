@@ -1,9 +1,2 @@
-﻿  CFactory.cpp
-  CImplement.cpp
-  CPlatformInterface.cpp
-  CSerialChannel1.cpp
-  CTcpChannel1.cpp
-  CUdpChannel1.cpp
-  TractorImplementsModule.cpp
-  Generating Code...
+﻿  CImplement.cpp
   TractorImplementsModule.vcxproj -> D:\MyFiles\BlueWhite Project\TractorImplementModule Repo\TractorImplementModule\Debug\TractorImplementsModule.exe

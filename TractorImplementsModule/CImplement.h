@@ -9,8 +9,8 @@
 namespace NImplement
 {
   static const uint32_t MIN_FUEL_LEVEL = 10;  // Percentage
-  static const uint32_t MAX_FUEL_LEVEL = 100; // Percentage
-  static const uint32_t IMPLEMENT_RATE = 1; //Seconds
+  static const uint32_t MAX_FUEL_LEVEL = 15; // Percentage
+  static const uint32_t IMPLEMENT_RATE = 6; //Seconds
 
   enum EImplement
   {
@@ -58,8 +58,8 @@ namespace NImplement
     CImplement(const NComm::EChannelType& channelType, const void* channelProp);
     virtual ~CImplement() { delete m_commChannel; };
 
-    void activateImplement() { m_cmdMsg->turnOn = true; };
-    void deactivateImplement() { m_cmdMsg->turnOff = true; };
+    void activateImplement() { m_cmdMsg->turnOn = true; m_rptMsg->isOn = true; };
+    void deactivateImplement() { m_cmdMsg->turnOff = true; m_rptMsg->isOn = false; };
     bool checkFuelLevelLow() { return (m_rptMsg->fuelLevel < MIN_FUEL_LEVEL) ? true : false; }
     bool checkImplementOn() { return m_rptMsg->isOn; };
     uint32_t getFuelLevel() { return m_rptMsg->fuelLevel; };
@@ -68,7 +68,7 @@ namespace NImplement
     };
     bool sendCmd();
     bool receiveRpt();
-    void simFuelUsage();
+    void runImplement();
 
   protected:
     SCmdMsg* m_cmdMsg;

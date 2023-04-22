@@ -33,7 +33,7 @@ namespace NImplement
     uint32_t getFuelLevel() { return m_implement->getFuelLevel(); };
     bool sendCommand() { return m_implement->sendCmd(); };
     bool receiveRpt() { return m_implement->receiveRpt(); };
-    const auto getSimFuelFunc() { return m_implement->simFuelUsage(); };
+    const auto runImplement() { return m_implement->runImplement(); };
     
   private:
     CImplement* m_implement;
