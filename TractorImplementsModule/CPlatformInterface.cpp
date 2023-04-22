@@ -39,6 +39,7 @@ void CPlatformInterface::runPlatform()
       tImplement.join();
       tModuleImplement1.join();
       m_platformState = COMPLETE;
+      
       break;
     }
 
@@ -46,6 +47,8 @@ void CPlatformInterface::runPlatform()
       break;
     }
   }
+
+  std::cout << "Implement Module 1 shutting down..." << std::endl;
 }
 
 //***********************************************************************

@@ -2,6 +2,10 @@
 
 using namespace NFactory;
 
+//***********************************************************************
+//* Function name : createImplement                                     *
+//* Purpose       : Create implement object and return pointer          *
+//***********************************************************************
 NImplement::CImplement* CFactory::createImplement(const NImplement::EImplement& implement,
                                                   const NComm::EChannelType& channelType, 
                                                   const void* channelProp)

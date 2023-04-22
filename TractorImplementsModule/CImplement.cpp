@@ -6,6 +6,10 @@
 
 using namespace NImplement;
 
+//***********************************************************************
+//* Function name : CImplement                                          *
+//* Purpose       : Constructor                                         *
+//***********************************************************************
 CImplement::CImplement(const NComm::EChannelType& channelType, const void* channelProp) : m_cmdMsg{ new SCmdMsg },
 m_rptMsg{ new SRptMsg },
 m_commChannel{ nullptr }
@@ -44,6 +48,10 @@ m_commChannel{ nullptr }
   }
 }
 
+//***********************************************************************
+//* Function name : runImplement                                        *
+//* Purpose       : Operational thread function for implement           *
+//***********************************************************************
 void CImplement::runImplement()
 {
   std::mutex l;
@@ -52,6 +60,8 @@ void CImplement::runImplement()
   m_rptMsg->fuelLevel = MAX_FUEL_LEVEL;
   l.unlock();
 
+  // Function created to allow mutex lock operation.
+  // The function is the condition for the fuel level check.
   auto fFuel = [this, &l]() -> bool
   {
     bool rv{ false };
@@ -61,6 +71,8 @@ void CImplement::runImplement()
     return rv;
   };
 
+  // Function created to allow mutex lock operation.
+  // The function checks if implement is on.
   auto fOn = [this, &l]() -> bool
   {
     bool rv{ false };
@@ -93,6 +105,10 @@ void CImplement::runImplement()
   }
 }
 
+//***********************************************************************
+//* Function name : sendCmd                                             *
+//* Purpose       : Dummy function for sending commands to implement    *
+//***********************************************************************
 bool CImplement::sendCmd()
 {
   bool rv{ false };
@@ -103,9 +119,14 @@ bool CImplement::sendCmd()
     rv = true;
   }
 
+  // Error handling: If no data receieved or bad message return false
   return rv;
 };
 
+//***********************************************************************
+//* Function name : receiveRpt                                          *
+//* Purpose       : Dummy function for receiving reports from implement *
+//***********************************************************************
 bool CImplement::receiveRpt()
 {
   bool rv{ false };
@@ -117,6 +138,8 @@ bool CImplement::receiveRpt()
   {
     //Markered out because receiev is an API
     //m_rptMsg = reinterpret_cast<SRptMsg*>(pData);
+
+    // Error handling: If no data receieved or bad message return false
     rv = true;
   }
 
