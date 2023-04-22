@@ -13,13 +13,6 @@ namespace NImplement
   {
   public:
     CImplementModule() : m_implement{ nullptr } {};
-    CImplementModule(const EImplement& implement, 
-                      const NComm::EChannelType& channelType,
-                      const void* channelProp) : m_implement{ nullptr }
-    {
-      m_implement = NFactory::CFactory().createImplement(implement, channelType, channelProp);
-    };
-
     ~CImplementModule()
     { 
       delete m_implement; 
@@ -34,6 +27,13 @@ namespace NImplement
     bool sendCommand() { return m_implement->sendCmd(); };
     bool receiveRpt() { return m_implement->receiveRpt(); };
     const auto runImplement() { return m_implement->runImplement(); };
+    void addImplement(const EImplement& implement,
+      const NComm::EChannelType& channelType,
+      const void* channelProp)
+    {
+      // Add implements to module
+      m_implement = NFactory::CFactory().createImplement(implement, channelType, channelProp);
+    }
     
   private:
     CImplement* m_implement;

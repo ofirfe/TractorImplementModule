@@ -43,11 +43,11 @@ namespace NPlatform
   {
   public:
     CPlatformInterface() : m_platformState{ INIT },
-      m_implementModule1{nullptr},
+      m_implementModule{nullptr},
       m_prevImplementCommands1(),
       m_implementReport1()
     {};
-    ~CPlatformInterface() { delete m_implementModule1; };
+    ~CPlatformInterface() { delete m_implementModule; };
 
     void runPlatform();
     void runImplementModule1();
@@ -67,8 +67,7 @@ namespace NPlatform
      
      EPlatformState m_platformState;
 
-     // Option of adding additional modules as needed
-     NImplement::CImplementModule* m_implementModule1;
+     NImplement::CImplementModule* m_implementModule;
 
      // Option of adding commands for additional modules
      SImplementCommand m_prevImplementCommands1;

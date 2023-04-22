@@ -16,8 +16,6 @@ namespace NComm
     virtual bool receive(uint8_t* data, uint8_t size);
     virtual void openCommChannel(const void* channelProp);
 
-  private:
-    
   };
 }
 
