@@ -45,7 +45,8 @@ namespace NPlatform
     CPlatformInterface() : m_platformState{ INIT },
       m_implementModule{nullptr},
       m_prevImplementCommands1(),
-      m_implementReport1()
+      m_implementReport1(),
+      m_pImplement1{nullptr}
     {};
     ~CPlatformInterface() { delete m_implementModule; };
 
@@ -54,7 +55,11 @@ namespace NPlatform
 
    private:
      // Function that identifies the Implement connected 
-     NImplement::EImplement identifyImplement(NComm::EChannelType& channelType) { return NImplement::BLADE; };
+     NImplement::EImplement identifyImplement(NComm::EChannelType& channelType) 
+     {
+       channelType = NComm::SERIAL;
+       return NImplement::BLADE; 
+     };
 
      // Function that reads channel properties according to type (identified above)
      // from configuration file.
@@ -74,6 +79,7 @@ namespace NPlatform
 
      // Option of adding reports for additional modules
      SImplementReport m_implementReport1;
+     NImplement::CImplement* m_pImplement1;
   };
 }
 
