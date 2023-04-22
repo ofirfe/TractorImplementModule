@@ -45,13 +45,15 @@ namespace NPlatform
     CPlatformInterface() : m_platformState{ INIT },
       m_implementModule{nullptr},
       m_prevImplementCommands1(),
-      m_implementReport1(),
-      m_pImplement1{nullptr}
+      m_prevImplementCommands2(),
+      m_pImplement1{nullptr},
+      m_pImplement2{nullptr}
     {};
     ~CPlatformInterface() { delete m_implementModule; };
 
     void runPlatform();
     void runImplementModule1();
+    void runImplementModule2();
 
    private:
      // Function that identifies the Implement connected 
@@ -69,6 +71,8 @@ namespace NPlatform
 
      const SImplementCommand* getPlatformCommands1();
      void sendPlatformReport1(const SImplementReport& implementReport) { /* Send report implementReport */ };
+     const SImplementCommand* getPlatformCommands2();
+     void sendPlatformReport2(const SImplementReport& implementReport) { /* Send report implementReport */ };
      
      EPlatformState m_platformState;
 
@@ -76,10 +80,11 @@ namespace NPlatform
 
      // Option of adding commands for additional modules
      SImplementCommand m_prevImplementCommands1;
+     SImplementCommand m_prevImplementCommands2;
 
      // Option of adding reports for additional modules
-     SImplementReport m_implementReport1;
      NImplement::CImplement* m_pImplement1;
+     NImplement::CImplement* m_pImplement2;
   };
 }
 

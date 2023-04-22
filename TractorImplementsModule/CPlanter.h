@@ -10,7 +10,8 @@ namespace NImplement
   public:
 
     CPlanter() {};
-    CPlanter(const NComm::EChannelType& channelType, const void* channelProp) {};
+    CPlanter(const NComm::EChannelType& channelType, const void* channelProp) : 
+              CImplement(channelType, channelProp) {};
     ~CPlanter() = default;
 
     // May add additional functionality for the

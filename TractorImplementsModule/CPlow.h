@@ -10,7 +10,8 @@ namespace NImplement
   public:
 
     CPlow() {};
-    CPlow(const NComm::EChannelType& channelType, const void* channelProp) {};
+    CPlow(const NComm::EChannelType& channelType, const void* channelProp) : 
+          CImplement(channelType, channelProp) {};
     ~CPlow() = default;
 
     // May add additional functionality for the
