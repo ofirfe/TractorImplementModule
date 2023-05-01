@@ -42,6 +42,7 @@ void CPlatformInterface::runPlatform()
 
     case OPER:
     {
+      
       // Implement operation and simualate fuel usage
       std::thread tImplement1([this] {m_pImplement1->runImplement(); });
       std::thread tImplement2([this] {m_pImplement2->runImplement(); });

@@ -85,6 +85,7 @@ namespace NPlatform
      // Option of adding reports for additional modules
      NImplement::CImplement* m_pImplement1;
      NImplement::CImplement* m_pImplement2;
+
   };
 }
 

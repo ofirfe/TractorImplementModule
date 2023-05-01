@@ -49,36 +49,54 @@ m_commChannel{ nullptr }
 }
 
 //***********************************************************************
+//* Function name : checkFuelLevelLow                                   *
+//* Purpose       : Check if fuel level is lower than minimum required  *
+//***********************************************************************
+bool CImplement::checkFuelLevelLow()
+{
+  auto fLowFuel = [this]()->bool
+  {
+    bool rv{ false };
+
+    m_l.lock();
+    rv = (m_rptMsg->fuelLevel < MIN_FUEL_LEVEL) ? true : false;
+    m_l.unlock();
+
+    return rv;
+  };
+
+  return fLowFuel();
+}
+
+//***********************************************************************
 //* Function name : runImplement                                        *
 //* Purpose       : Operational thread function for implement           *
 //***********************************************************************
 void CImplement::runImplement()
 {
-  std::mutex l;
-
-  l.lock();
+  m_l.lock();
   m_rptMsg->fuelLevel = MAX_FUEL_LEVEL;
-  l.unlock();
+  m_l.unlock();
 
   // Function created to allow mutex lock operation.
   // The function is the condition for the fuel level check.
-  auto fFuel = [this, &l]() -> bool
+  auto fFuel = [this]() -> bool
   {
     bool rv{ false };
-    l.lock();
-    ((m_rptMsg->fuelLevel > 0) && (m_rptMsg->isOn)) ? rv = true : rv = false;
-    l.unlock();
+    m_l.lock();
+    rv = ((m_rptMsg->fuelLevel > 0) && (m_rptMsg->isOn)) ? true : false;
+    m_l.unlock();
     return rv;
   };
 
   // Function created to allow mutex lock operation.
   // The function checks if implement is on.
-  auto fOn = [this, &l]() -> bool
+  auto fOn = [this]() -> bool
   {
     bool rv{ false };
-    l.lock();
-    (m_rptMsg->isOn) ? rv = true : rv = false;
-    l.unlock();
+    m_l.lock();
+    rv = (m_rptMsg->isOn) ? true : false;
+    m_l.unlock();
     return rv;
   };
 
@@ -94,9 +112,9 @@ void CImplement::runImplement()
     receiveRpt();
 
     // Logic cycle
-    l.lock();
+    m_l.lock();
     --m_rptMsg->fuelLevel;
-    l.unlock();
+    m_l.unlock();
 
     //Send Commnads
     sendCmd();

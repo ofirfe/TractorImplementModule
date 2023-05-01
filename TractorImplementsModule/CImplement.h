@@ -63,12 +63,51 @@ namespace NImplement
       delete m_commChannel; 
     };
 
-    void activateImplement() { m_cmdMsg->turnOn = true; m_rptMsg->isOn = true; };
-    void deactivateImplement() { m_cmdMsg->turnOff = true; m_rptMsg->isOn = false; };
-    bool checkFuelLevelLow() { return (m_rptMsg->fuelLevel < MIN_FUEL_LEVEL) ? true : false; }
-    bool checkImplementOn() { return m_rptMsg->isOn; };
-    uint32_t getFuelLevel() { return m_rptMsg->fuelLevel; };
-    bool isChannelOpen() { return m_commChannel->isChannelOpen();};
+    void activateImplement() {
+      m_cmdMsg->turnOn = true;
+      m_l.lock();
+      m_rptMsg->isOn = true;
+      m_l.unlock();
+    };
+    void deactivateImplement() { 
+      m_cmdMsg->turnOff = true; 
+      m_l.lock();
+      m_rptMsg->isOn = false;
+      m_l.unlock();
+    };
+    bool checkFuelLevelLow();
+    bool checkImplementOn() { 
+
+      return m_rptMsg->isOn; };
+    uint32_t getFuelLevel() 
+    { 
+      auto fGetFuelLevel = [this]() -> uint32_t
+      {
+        uint32_t rv{ 0 };
+
+        m_l.lock();
+        rv = m_rptMsg->fuelLevel;
+        m_l.unlock();
+
+        return rv;
+      };
+
+      return fGetFuelLevel();
+    };
+    bool isChannelOpen() 
+    {
+      auto fIsChannelOpen = [this]() -> bool
+      {
+        bool rv{ false };
+
+        m_l.lock();
+        rv = m_commChannel->isChannelOpen();
+        m_l.unlock();
+
+        return rv;
+      };
+      return fIsChannelOpen();
+    };
     bool sendCmd();
     bool receiveRpt();
     void runImplement();
@@ -77,6 +116,7 @@ namespace NImplement
     SCmdMsg* m_cmdMsg;
     SRptMsg* m_rptMsg;
     NComm::CComm* m_commChannel;
+    std::mutex m_l;
   };
 }
 
