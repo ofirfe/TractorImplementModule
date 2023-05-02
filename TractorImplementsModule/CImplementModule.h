@@ -3,9 +3,7 @@
 
 #include <thread>
 #include <chrono>
-#include "CImplement.h"
 #include "CFactory.h"
-#include "CComm.h"
 
 namespace NImplement
 {

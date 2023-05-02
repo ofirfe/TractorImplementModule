@@ -38,3 +38,47 @@ NImplement::CImplement* CFactory::createImplement(const NImplement::EImplement& 
 
   return pImplement;
 }
+
+//***********************************************************************
+//* Function name : createCommChannel                                   *
+//* Purpose       : Create comm channel object and return pointer       *
+//***********************************************************************
+NComm::CComm* CFactory::createCommChannel(const NComm::EChannelType& channelType, const void* channelProp)
+{
+  NComm::CComm* rv{ nullptr };
+
+  switch (channelType)
+  {
+  case NComm::SERIAL:
+  {
+    const NComm::SSerialChannelProp* pSerialChannelProp = reinterpret_cast<const NComm::SSerialChannelProp*>(channelProp);
+    NComm::CSerialChannel1* pSerialChannel1 = new NComm::CSerialChannel1;
+    pSerialChannel1->openCommChannel(pSerialChannelProp);
+    rv = pSerialChannel1;
+    break;
+  }
+
+  case NComm::UDP:
+  {
+    const NComm::SEthChannelProp* pEthChannelProp = reinterpret_cast<const NComm::SEthChannelProp*>(channelProp);
+    NComm::CUdpChannel1* pUdpChannel = new NComm::CUdpChannel1;
+    pUdpChannel->openCommChannel(pEthChannelProp);
+    rv = pUdpChannel;
+    break;
+  }
+
+  case NComm::TCP:
+  {
+    const NComm::SEthChannelProp* pEthChannelProp = reinterpret_cast<const NComm::SEthChannelProp*>(channelProp);
+    NComm::CTcpChannel1* pTcpChannel = new NComm::CTcpChannel1;
+    pTcpChannel->openCommChannel(pEthChannelProp);
+    rv = pTcpChannel;
+    break;
+  }
+
+  default:
+    break;
+  }
+
+  return rv;
+}

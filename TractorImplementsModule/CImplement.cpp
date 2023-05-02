@@ -1,8 +1,5 @@
-#include "CImplement.h"
-#include "CUdpChannel1.h"
-#include "CTcpChannel1.h"
-#include "CSerialChannel1.h"
 #include <mutex>
+#include "CFactory.h"
 
 using namespace NImplement;
 
@@ -14,38 +11,7 @@ CImplement::CImplement(const NComm::EChannelType& channelType, const void* chann
 m_rptMsg{ new SRptMsg },
 m_commChannel{ nullptr }
 {
-  switch (channelType)
-  {
-  case NComm::SERIAL:
-  {
-    const NComm::SSerialChannelProp* pSerialChannelProp = reinterpret_cast<const NComm::SSerialChannelProp*>(channelProp);
-    NComm::CSerialChannel1* pSerialChannel1 = new NComm::CSerialChannel1;
-    pSerialChannel1->openCommChannel(pSerialChannelProp);
-    m_commChannel = pSerialChannel1;
-    break;
-  }
-
-  case NComm::UDP:
-  {
-    const NComm::SEthChannelProp* pEthChannelProp = reinterpret_cast<const NComm::SEthChannelProp*>(channelProp);
-    NComm::CUdpChannel1* pUdpChannel = new NComm::CUdpChannel1;
-    pUdpChannel->openCommChannel(pEthChannelProp);
-    m_commChannel = pUdpChannel;
-    break;
-  }
-
-  case NComm::TCP:
-  {
-    const NComm::SEthChannelProp* pEthChannelProp = reinterpret_cast<const NComm::SEthChannelProp*>(channelProp);
-    NComm::CTcpChannel1* pTcpChannel = new NComm::CTcpChannel1;
-    pTcpChannel->openCommChannel(pEthChannelProp);
-    m_commChannel = pTcpChannel;
-    break;
-  }
-
-  default:
-    break;
-  }
+  m_commChannel = NFactory::CFactory::createCommChannel(channelType, channelProp);
 }
 
 //***********************************************************************

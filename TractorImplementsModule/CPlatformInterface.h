@@ -2,10 +2,6 @@
 #define CPLATFORMINTERFACE_H
 
 #include <stdint.h>
-//#include <thread>
-//#include <chrono>
-
-//#include "CComm.h"
 #include "CImplementModule.h"
 
 namespace NPlatform
